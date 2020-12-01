@@ -1,7 +1,7 @@
 function binarySearch(array, target) {
-  var start = array[0];
-  var end = array[array.length];
-  var mid = Math.floor((start + end) / 2);
+  let start = array[0];
+  let end = array[array.length];
+  let mid = Math.floor((start + end) / 2);
 
   if (target < start || target > end) {
     return -1;
