@@ -1,7 +1,7 @@
 function binarySearch(array, target) {
-  let start = array[0];
-  let end = array[array.length];
-  let mid = Math.floor((start + end) / 2);
+  var start = array[0];
+  var end = array[array.length - 1];
+  var mid = Math.floor((start + end) / 2);
 
   if (target < start || target > end) {
     return -1;
@@ -20,12 +20,12 @@ function binarySearch(array, target) {
 }
 
 console.log(binarySearch([1, 2, 3, 4, 5, 6], 1)); // 0
-// console.log(binarySearch([1, 2, 3, 4, 5, 6], 3)); // 2
-// console.log(binarySearch([1, 2, 3, 4, 5, 6], 5)); // 4
-// console.log(binarySearch([1, 2, 3, 4, 5, 6], 6)); // 5
-// console.log(binarySearch([1, 2, 3, 4, 5, 6], -1)); // -1
-// console.log(binarySearch([1, 2, 3, 4, 5, 6], 0)); // -1
-// console.log(binarySearch([1, 2, 3, 4, 5, 6], 7)); // -1
+console.log(binarySearch([1, 2, 3, 4, 5, 6], 3)); // 2
+console.log(binarySearch([1, 2, 3, 4, 5, 6], 5)); // 4
+console.log(binarySearch([1, 2, 3, 4, 5, 6], 6)); // 5
+console.log(binarySearch([1, 2, 3, 4, 5, 6], -1)); // -1
+console.log(binarySearch([1, 2, 3, 4, 5, 6], 0)); // -1
+console.log(binarySearch([1, 2, 3, 4, 5, 6], 7)); // -1
 
 
 
