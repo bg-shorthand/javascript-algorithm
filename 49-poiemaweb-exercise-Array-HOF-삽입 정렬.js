@@ -7,16 +7,29 @@
 // 삽입 정렬을 통해 주어진 배열(array)을 정렬하는 함수를 구현하라. 단, 어떠한 빌트인 함수도 사용하지 않고 for 문을 사용하여 구현하여야 한다.
 
 function insertionSort(array) {
-  for (let i = 0; i < array.length; i ++) {
-    for (let k = 1; k < array.length; k++) {
-      if (array[k - 1] > array[k]) {
-        let j = array[k];
-        array[k] = array[k - 1];
-        array[k - 1] = j
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j > 0; j--) {
+      for (let k = j - 1; k >= 0; k--) {
+        if (array[j] < array[k]) {
+          let l = array[j];
+          array[j] = array[k];
+          array[k] = l;
+        }
       }
     }
   }
   return array;
+
+  // for (let i = 0; i < array.length; i ++) {
+  //   for (let k = 1; k < array.length; k++) {
+  //     if (array[k - 1] > array[k]) {
+  //       let j = array[k];
+  //       array[k] = array[k - 1];
+  //       array[k - 1] = j
+  //     }
+  //   }
+  // }
+  // return array;
 }
 
 console.log(insertionSort([3, 1, 0, -1, 4, 2])); // [-1, 0, 1, 2, 3, 4]
