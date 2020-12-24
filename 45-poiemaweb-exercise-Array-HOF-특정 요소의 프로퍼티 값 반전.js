@@ -9,13 +9,15 @@ let todos = [
 ];
 
 function toggleCompletedById(id) {
+  // todos.forEach(v => {
+  //   if (v.id === id) v.completed = !v.completed;
+  // })
+
   todos.forEach(v => {
     if (v.id === id) {
-      v.completed = v.completed ? false : true;
+      v = { ...v, completed: !v.completed };
     }
-    return v;
   })
-  return todos;
 }
 
 toggleCompletedById(2);

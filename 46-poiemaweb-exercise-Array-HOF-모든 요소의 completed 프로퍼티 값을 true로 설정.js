@@ -9,10 +9,10 @@ let todos = [
 ];
 
 function toggleCompletedAll() {
-  todos.forEach(v => {
-    v.completed = true;
-    return v;
-  })
+  // todos.forEach(v => v.completed = true);
+
+  todos.forEach(v => v = { ...v, completed: true });
+
 }
 
 toggleCompletedAll();
