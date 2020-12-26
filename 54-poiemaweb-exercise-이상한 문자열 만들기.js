@@ -7,7 +7,9 @@
 // 주의) 문자열 전체의 짝/홀수 인덱스가 아니라 단어(공백을 기준)별로 짝/홀수 인덱스를 판단한다.
 
 function toWeirdCase (s) {
-  return s.split(' ').map(v => Array.from(v)).map(v => v.map((v, i) => i % 2 ? v.toLowerCase() : v.toUpperCase()).join('')).join(' ');
+  // return s.split(' ').map(v => Array.from(v)).map(v => v.map((v, i) => i % 2 ? v.toLowerCase() : v.toUpperCase()).join('')).join(' ');
+
+  return s.split(' ').map(v => v.split('').map((v, i) => i % 2 ? v.toLowerCase() : v.toUpperCase()).join('')).join(' ');
 }
 
 console.log(toWeirdCase('hello world')); // 'HeLlO WoRlD'
