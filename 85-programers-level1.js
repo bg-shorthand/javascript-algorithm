@@ -1,16 +1,14 @@
-// 행렬의 덧셈
+// 제일 작은 수 제거하기
 
-// 행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 열의 값을 서로 더한 결과가 됩니다. 2개의 행렬 arr1과 arr2를 입력받아, 행렬 덧셈의 결과를 반환하는 함수, solution을 완성해주세요.
+// 정수를 저장한 배열, arr 에서 가장 작은 수를 제거한 배열을 리턴하는 함수, solution을 완성해주세요. 단, 리턴하려는 배열이 빈 배열인 경우엔 배열에 -1을 채워 리턴하세요. 예를들어 arr이 [4,3,2,1]인 경우는 [4,3,2]를 리턴 하고, [10]면 [-1]을 리턴 합니다.
 
-function solution(arr1, arr2) {
+function solution (arr) {
   let answer = [];
-
-  for(let i = 0; i < arr1.length; i++) {
-    answer.push(arr1[i].map((v, index) => v + arr2[i][index]));
-  }
-
+  const min = arr.reduce((acc, cur, index, arr) => {
+    acc = acc < cur ? acc : acc > cur ? cur : acc;
+    return acc;
+  }, arr[0]);
+  answer = arr.filter(v => v !== min);
+  answer = answer.length === 0 ? [-1] : answer;
   return answer;
 }
-
-console.log(solution([[1,2],[2,3]], [[3,4],[5,6]])) // [[4,6],[7,9]]
-console.log(solution([[1],[2]], [[3],[4]])) // [[4],[6]]
