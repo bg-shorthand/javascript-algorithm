@@ -9,26 +9,26 @@
 // 문자열 s의 길이 : 50 이하의 자연수
 // 문자열 s는 알파벳으로만 이루어져 있습니다.
 
-function solution(s){
-    var answer = true;
-    var p = 0;
-    var y = 0;
-    for (var i = 0; i < s.length; i++) {
-        if (s[i] === 'p') {
-            p++;
-        }else if (s[i] === 'P') {
-            p++;
-        }else if (s[i] === 'y') {
-            y++;
-        }else if (s[i] === 'Y') {
-            y++;
-        }else {
-            continue;
-        }
+function solution(s) {
+  var answer = true;
+  var p = 0;
+  var y = 0;
+  for (var i = 0; i < s.length; i++) {
+    if (s[i] === "p") {
+      p++;
+    } else if (s[i] === "P") {
+      p++;
+    } else if (s[i] === "y") {
+      y++;
+    } else if (s[i] === "Y") {
+      y++;
+    } else {
+      continue;
     }
-    answer = (p === y ? true : false);
-    // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-    console.log('Hello Javascript');
-  
-    return answer;
   }
+  answer = p === y ? true : false;
+  // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+  console.log("Hello Javascript");
+
+  return answer;
+}
