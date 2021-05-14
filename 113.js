@@ -22,21 +22,12 @@ function solution(maps, p, r) {
 
   for (let i = 1; i <= maps.length; i++) {
     for (let j = 1; j <= maps.length; j++) {
-      const target = [i, j];
-      // const top = [i, j - r / 2];
-      // const right = [i - r / 2, j];
-      // const bottom = [i, j + r / 2];
-      const left = [i, j - r / 2];
-      const right = [i, j + r / 2];
-
-      for (let k = 0; k <= r; k++) {
-        const scope = []
-        for (let l = 0; l <= )
-        scope.push([left[0] - 2, left[1] + k])
-        scope.push([left[0] - 1, left[1] + k])
+      for (let k = i + 1 - r; k <= i + 1; k++) {
+        if (maps.length - 1 < k < 0) continue;
+        for (let l = i + 1 - r; l <= i + 1; l++) {
+          if (maps.length - 1 < l < 0) continue;
+        }
       }
-
-      console.log(target, left);
     }
   }
 
