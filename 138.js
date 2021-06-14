@@ -1,80 +1,36 @@
 function solution(record) {
-  let answer = [];
-  let nickState = [];
+  const answer = [];
 
-  record = record
+  const newRecord = record
     .map((v) => v.split(" "))
-    .map((v) => ({
-      action: v[0],
-      uid: v[1],
-      nickname: v[2] ? v[2] : null,
-    }));
+    .map((v) => ({ action: v[0], uid: v[1], nick: v[2] ? v[2] : null }));
+  const nickState = [];
 
-  record.forEach((v) => {
+  newRecord.forEach((v) => {
+    const isNick = nickState.find((w) => w.uid === v.uid);
+
     if (v.action === "Enter") {
-      if (nickState.find((w) => w.uid === v.uid)) {
-        nickState.find((w) => w.uid === v.uid).nickname = v.nickname;
-        answer.map((w) =>
-          w.uid === v.uid
-            ? w.action === "Enter"
-              ? {
-                  ...w,
-                  log: `${
-                    nickState.find((w) => w.uid === v.uid).nickname
-                  }님이 들어왔습니다.`,
-                }
-              : {
-                  ...w,
-                  log: `${
-                    nickState.find((w) => w.uid === v.uid).nickname
-                  }님이 나갔습니다.`,
-                }
-            : w
-        );
+      answer.push({ action: "님이 들어왔습니다.", uid: v.uid });
+      if (isNick) {
+        isNick.nick = v.nick;
       } else {
-        nickState.push({ uid: v.uid, nickname: v.nickname });
+        nickState.push({ uid: v.uid, nick: v.nick });
       }
-
-      answer.push({ ...v, log: `${v.nickname}님이 들어왔습니다.` });
-      console.log("nickState", nickState);
-      console.log(answer);
     } else if (v.action === "Leave") {
-      answer.push({
-        ...v,
-        log: `${
-          nickState.find((w) => w.uid === v.uid).nickname
-        }님이 나갔습니다.`,
-      });
-      console.log("nickState", nickState);
-      console.log(answer);
+      answer.push({ action: "님이 나갔습니다.", uid: v.uid });
     } else if (v.action === "Change") {
-      nickState.map((w) =>
-        w.uid === v.uid ? { ...w, nickname: v.nickname } : w
-      );
-      console.log("nickState", nickState);
-
-      answer.map((w) =>
-        w.uid === v.uid
-          ? w.action === "Enter"
-            ? {
-                ...w,
-                log: `${
-                  nickState.find((w) => w.uid === v.uid).nickname
-                }님이 들어왔습니다.`,
-              }
-            : {
-                ...w,
-                log: `${
-                  nickState.find((w) => w.uid === v.uid).nickname
-                }님이 나갔습니다.`,
-              }
-          : w
-      );
-      console.log(answer);
+      if (isNick) {
+        isNick.nick = v.nick;
+      } else {
+        nickState.push({ uid: v.uid, nick: v.nick });
+      }
     }
   });
 
-  return answer.map((v) => v.log);
+  return answer.map((v) => {
+    const nick = nickState.find((w) => w.uid === v.uid).nick;
+    return nick + v.action;
+  });
 }
 
 console.log(
