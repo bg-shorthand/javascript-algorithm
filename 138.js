@@ -1,6 +1,4 @@
 function solution(record) {
-  const answer = [];
-
   const newRecord = record
     .map((v) => v.split(" "))
     .map((v) => ({ action: v[0], uid: v[1], nick: v[2] ? v[2] : null }));
@@ -9,16 +7,7 @@ function solution(record) {
   newRecord.forEach((v) => {
     const isNick = nickState.find((w) => w.uid === v.uid);
 
-    if (v.action === "Enter") {
-      answer.push({ action: "님이 들어왔습니다.", uid: v.uid });
-      if (isNick) {
-        isNick.nick = v.nick;
-      } else {
-        nickState.push({ uid: v.uid, nick: v.nick });
-      }
-    } else if (v.action === "Leave") {
-      answer.push({ action: "님이 나갔습니다.", uid: v.uid });
-    } else if (v.action === "Change") {
+    if (v.action !== "Leave") {
       if (isNick) {
         isNick.nick = v.nick;
       } else {
@@ -27,10 +16,14 @@ function solution(record) {
     }
   });
 
-  return answer.map((v) => {
-    const nick = nickState.find((w) => w.uid === v.uid).nick;
-    return nick + v.action;
-  });
+  return newRecord
+    .filter((v) => v.action !== "Change")
+    .map((v) => {
+      const nick = nickState.find((w) => w.uid === v.uid).nick;
+      const string =
+        v.action === "Enter" ? "님이 들어왔습니다." : "님이 나갔습니다.";
+      return nick + string;
+    });
 }
 
 console.log(
